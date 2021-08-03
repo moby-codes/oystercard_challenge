@@ -28,13 +28,34 @@ describe OysterCard do
       subject.top_up(4)
       expect { subject.deduct(2) }.to change { subject.balance }.from(4).to(2)
     end    
+
+    it 'checks if you are in journey' do
+      expect(subject.in_journey?).to eq(false)
+    end
+    
+    it 'checks if you have touched in' do 
+      subject.touch_in
+      expect(subject.state).to eq(true)
+    end  
+    
+    it 'checks if you have touched out' do
+      subject.touch_out
+      expect(subject.state).to eq(false)
+    end
+
+    it 'checks the state of the journey' do
+      subject.touch_in
+      subject.touch_out
+      expect(subject).not_to be_in_journey
+    end
+    
 end
 
 
 
 
 
+# In order to get through the barriers.
+# As a customer
+# I need to touch in and out.
 
-#In order to pay for my journey
-#As a customer
-#I need my fare deducted from my card
