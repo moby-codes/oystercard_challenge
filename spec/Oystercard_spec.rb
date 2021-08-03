@@ -34,6 +34,7 @@ describe OysterCard do
     end
     
     it 'checks if you have touched in' do 
+      subject.top_up(5)
       subject.touch_in
       expect(subject.state).to eq(true)
     end  
@@ -44,18 +45,15 @@ describe OysterCard do
     end
 
     it 'checks the state of the journey' do
+      subject.top_up(5)
       subject.touch_in
       subject.touch_out
       expect(subject).not_to be_in_journey
     end
-    
+    it "checks for min amount of £1 when touch_in" do
+      expect {subject.touch_in}.to raise_error("insufficient balance")
+    end
 end
 
 
-
-
-
-# In order to get through the barriers.
-# As a customer
-# I need to touch in and out.
 
