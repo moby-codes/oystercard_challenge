@@ -27,11 +27,11 @@ describe OysterCard do
       expect(subject.in_journey?).to eq(false) 
     end
     
-    # it 'checks if you have touched in' do 
-    #   subject.top_up(5)
-    #   subject.touch_in(station)
-    #   expect(subject.in_journey?).to eq(true)
-    # end  
+    it 'checks if you have touched in' do 
+      subject.top_up(5)
+      subject.touch_in(station)
+      expect(subject.in_journey?).to eq(true)
+    end  
     
     it 'checks if you have touched out' do
       subject.touch_out(station)
