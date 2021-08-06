@@ -1,5 +1,5 @@
 class OysterCard 
-  attr_reader :balance, :journey_log
+  attr_reader :balance, :journey_log, :journey
   
   MAX_BALANCE = 90
   MIN_BALANCE = 1
@@ -11,7 +11,7 @@ class OysterCard
   end
  
   def top_up(credit)
-    check_limit
+    check_limit(credit)
     @balance += credit
   end
 
@@ -38,8 +38,9 @@ class OysterCard
     raise "insufficient balance" if @balance < MIN_BALANCE
   end
 
-  def check_limit
-    raise 'Cannot exceed maximum amount £90' if @balance + credit > MAX_BALANCE
+  def check_limit(credit)
+    message = "Cannot exceed maximum amount #{OysterCard::MAX_BALANCE}"
+    raise message if @balance + credit > MAX_BALANCE
   end
 end
 
